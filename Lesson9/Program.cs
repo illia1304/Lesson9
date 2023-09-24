@@ -20,6 +20,7 @@
             {
                 UserInteraction();
             }
+
         }
 
         static string[] ReadFile(string file)
@@ -67,7 +68,9 @@
 
             switch (answer)
             {
-                case 1: break;
+                case 1: 
+                    WriteAllContactsToConsole();
+                    break;
                 case 2: break;
                 case 3: break;
                 case 4: break;
@@ -80,10 +83,10 @@
         }
         static void WriteAllContactsToConsole()
         {
-            for(int i =0; i < contacts.Length; i++)
+            for(int i = 0; i < contacts.Length; i++)
             {
                 int age = DateTime.Now.Year - contacts[i].birth.Year;
-                Console.WriteLine($"#{i + 1}: Name: {contacts[i].Item1}, Phone: {contacts[i].Item2}, Age: {age}");
+                Console.WriteLine($"Name{contacts[i].name}, phone{contacts[i].phone}, age{age}");
             }
         }
         static void AddNewContact()
