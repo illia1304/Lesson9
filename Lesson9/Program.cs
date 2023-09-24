@@ -16,6 +16,10 @@
             string[] records = ReadFile(database);
             contacts = ConvertStringsToContacts(records);
 
+            while (true)
+            {
+                UserInteraction();
+            }
         }
 
         static string[] ReadFile(string file)
@@ -50,9 +54,37 @@
             return contacts;
         }
 
+
+        static void UserInteraction()
+        {
+            Console.WriteLine("1. Write all contacts");
+            Console.WriteLine("2. Add new contact");
+            Console.WriteLine("3. Edit contact");
+            Console.WriteLine("4. Search by name");
+            Console.WriteLine("6. Save");
+
+            int answer = int.Parse(Console.ReadLine());
+
+            switch (answer)
+            {
+                case 1: break;
+                case 2: break;
+                case 3: break;
+                case 4: break;
+                case 5: break;
+                case 6: break;
+                default: 
+                    Console.WriteLine("From 1 to 6");
+                    break;
+            }
+        }
         static void WriteAllContactsToConsole()
         {
-            
+            for(int i =0; i < contacts.Length; i++)
+            {
+                int age = DateTime.Now.Year - contacts[i].birth.Year;
+                Console.WriteLine($"#{i + 1}: Name: {contacts[i].Item1}, Phone: {contacts[i].Item2}, Age: {age}");
+            }
         }
         static void AddNewContact()
         {
@@ -74,14 +106,14 @@
 
         }
 
-        static void CalculateAge()
-        {
-
-        }
-
         static void SaveDateBase()
         {
-
+            string[] lines = new string[contacts.Length];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                lines[i] = $"{contacts[i].Item1},{contacts[i].Item2},{contacts[i].Item3}";
+            }
+            File.WriteAllLines(database, lines);
         }
 
     }
